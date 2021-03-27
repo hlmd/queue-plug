@@ -1,0 +1,24 @@
+{
+  "name": "hlmd/queue-plug",
+  "description": "队列插件",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "黄连木笛",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "guzzlehttp/guzzle": "^7.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "queue\\": "src/"
+    },
+    "psr-0": {
+      "queue": "src"
+    }
+  }
+}
