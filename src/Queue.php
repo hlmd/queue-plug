@@ -2,10 +2,58 @@
 
 namespace queue;
 
+use Exception;
+use queue\service\Base;
+use queue\service\Instance;
+
+/**
+ * Class Queue
+ * @method static Instance Instance(string $base_url = '', string $key = '', string $secret = '') 实例
+ * @package queue
+ */
 class Queue
 {
-    public static function __callStatic($name, $arguments)
+    /**
+     * @param $name
+     * @param $arguments
+     * @return Base
+     * @throws Exception
+     */
+    public static function __callStatic($name, $arguments): Base
     {
-        var_dump($name, $arguments);
+        // TODO: Implement __callStatic() method.
+        $service = 'queue\\service\\' . $name;
+        $config = self::getConfig($arguments);
+        return new $service(...$config);
+    }
+
+    /**
+     * 获取配置
+     * @param $config
+     * @return array
+     * @throws Exception
+     */
+    public static function getConfig($config): array
+    {
+        if ($config) return $config;
+        if (function_exists('root_path')) {
+            $path = root_path() . 'extend';
+        } else {
+            $path = __DIR__ . '/../../../../extend';
+        }
+        $file_path = $path . '/queue.php';
+        if (is_dir($path) && is_file($file_path)) {
+            $config = require $file_path;
+            if (!isset($config['base_url']) || !isset($config['key']) || !isset($config['secret'])) {
+                throw new Exception('Missing configuration!');
+            }
+            return [
+                $config['base_url'],
+                $config['key'],
+                $config['secret'],
+            ];
+        } else {
+            throw new Exception('Missing configuration!');
+        }
     }
 }
