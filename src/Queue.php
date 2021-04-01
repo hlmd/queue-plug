@@ -4,11 +4,17 @@ namespace queue;
 
 use Exception;
 use queue\service\Base;
+use queue\service\Group;
 use queue\service\Instance;
+use queue\service\Message;
+use queue\service\Topic;
 
 /**
  * Class Queue
  * @method static Instance Instance(string $base_url = '', string $key = '', string $secret = '') 实例
+ * @method static Topic       Topic(string $base_url = '', string $key = '', string $secret = '') Topic
+ * @method static Group       Group(string $base_url = '', string $key = '', string $secret = '') Group
+ * @method static Message   Message(string $base_url = '', string $key = '', string $secret = '') Message
  * @package queue
  */
 class Queue

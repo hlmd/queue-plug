@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 
 use queue\Queue;
+use queue\unit\Constant;
 
 dump($argv);
 
@@ -35,7 +36,10 @@ function dump(...$vars)
     echo $output;
 }
 
-
+/**
+ * 实例
+ * Class Instance
+ */
 class Instance
 {
     /**
@@ -57,14 +61,121 @@ class Instance
     }
 
     /**
-     * 创建实例
+     * 修改实例
      */
     public function update()
     {
-        $response = Queue::Instance()->update('实例名称2', '备注');
+        $response = Queue::Instance()->update(19, '实例名称3', '备注');
         dump($response);
     }
 
+    /**
+     * 修改实例
+     */
+    public function info()
+    {
+        $response = Queue::Instance()->info(19);
+        dump($response);
+    }
+
+    /**
+     * 删除实例
+     */
+    public function delete()
+    {
+        $response = Queue::Instance()->delete(19);
+        dump($response);
+    }
+
+    /**
+     * 同步实例
+     */
+    public function async()
+    {
+        $response = Queue::Instance()->async(19);
+        dump($response);
+    }
+
+    /**
+     * 同步实例
+     */
+    public function asyncAll()
+    {
+        $response = Queue::Instance()->asyncAll();
+        dump($response);
+    }
+
+
+}
+
+/**
+ * Topic
+ * Class Topic
+ */
+class Topic
+{
+    /**
+     * 创建Topic
+     */
+    public function create()
+    {
+        $response = Queue::Topic()->create('MQ_INST_1997661112067980_BXhPKk3X', Constant::MSG_TYPE_COMMON, 'test2', 'test2的remark');
+        dump($response);
+    }
+
+    /**
+     * 删除Topic
+     */
+    public function delete()
+    {
+        $response = Queue::Topic()->delete('MQ_INST_1997661112067980_BXhPKk3X', 'test2');
+        dump($response);
+    }
+
+    /**
+     * Topic信息状态
+     */
+    public function getTopicMsgTotal()
+    {
+        $response = Queue::Topic()->getTopicMsgTotal('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01');
+        dump($response);
+    }
+
+    /**
+     * Topic订阅组
+     */
+    public function viewTopicSub()
+    {
+        $response = Queue::Topic()->viewTopicSub('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01');
+        dump($response);
+    }
+
+    /**
+     * 修改Topic的读写模式
+     */
+    public function setTopicModel()
+    {
+        $response = Queue::Topic()->setTopicModel('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01', Constant::TOPIC_PERM_ALL);
+        dump($response);
+    }
+
+    /**
+     * Topic列表
+     */
+    public function getTopicDataList()
+    {
+        $response = Queue::Topic()->getTopicDataList('MQ_INST_1997661112067980_BXhPKk3X');
+        dump($response);
+    }
+
+    /**
+     * 同步所有Topic
+     */
+    public function syncTopicDataList()
+    {
+        $response = Queue::Topic()->syncTopicDataList('MQ_INST_1997661112067980_BXhPKk3X');
+        dump($response);
+    }
 
 }
 

@@ -6,8 +6,8 @@ namespace queue\service;
 /**
  * Class Instance
  * @method array list() 获取实例列表
- * @method array create(string $instance_name, $remark = '') 创建实例
- * @method array update(int $id, string $instance_name, $remark = '') 修改实例
+ * @method array create(string $instance_name, string $remark = '') 创建实例
+ * @method array update(int $id, string $instance_name, string $remark = '') 修改实例
  * @method array info(int $id) 实例信息
  * @method array delete(int $id) 删除实例
  * @method array asyncAll() 同步所有实例
@@ -55,7 +55,7 @@ class Instance extends Base
 
     /**
      * 删除实例
-     * @param string $id 实例id
+     * @param int $id 实例id
      */
     protected $delete = [
         'id'
@@ -68,7 +68,7 @@ class Instance extends Base
 
     /**
      * 同步实例
-     * @param string $id 实例id
+     * @param int $id 实例id
      */
     protected $async = [
         'id'
