@@ -6,7 +6,11 @@ use queue\unit\Constant;
 
 dump($argv);
 
-function root_path()
+/**
+ * 获取项目根路径
+ * @return string
+ */
+function root_path(): string
 {
     return __DIR__ . DIRECTORY_SEPARATOR;
 }
@@ -174,6 +178,104 @@ class Topic
     public function syncTopicDataList()
     {
         $response = Queue::Topic()->syncTopicDataList('MQ_INST_1997661112067980_BXhPKk3X');
+        dump($response);
+    }
+
+}
+
+/**
+ * Group
+ * Class Group
+ */
+class Group
+{
+    /**
+     * 创建
+     */
+    public function create()
+    {
+        $response = Queue::Group()->create('MQ_INST_1997661112067980_BXhPKk3X', 'GID_TEST_2020', Constant::GROUP_TYPE_HTTP, '我是备注');
+        dump($response);
+    }
+
+    /**
+     * 删除
+     */
+    public function delete()
+    {
+        $response = Queue::Group()->delete('MQ_INST_1997661112067980_BXhPKk3X', 'GID_TEST_2020');
+        dump($response);
+    }
+
+    /**
+     * 列表
+     */
+    public function getGroupList()
+    {
+        $response = Queue::Group()->getGroupList('MQ_INST_1997661112067980_BXhPKk3X', Constant::GROUP_TYPE_HTTP);
+        dump($response);
+    }
+
+    /**
+     * 同步所有Group
+     */
+    public function syncGroupList()
+    {
+        $response = Queue::Group()->syncGroupList('MQ_INST_1997661112067980_BXhPKk3X', Constant::GROUP_TYPE_HTTP);
+        dump($response);
+    }
+
+    /**
+     * Group订阅的Topic
+     */
+    public function getGroupSubDetail()
+    {
+        $response = Queue::Group()->getGroupSubDetail('MQ_INST_1997661112067980_BXhPKk3X', 'GID_test_10');
+        dump($response);
+    }
+
+    /**
+     * 设置消息读取权限
+     */
+    public function setGroupConsumerUpdate()
+    {
+        $response = Queue::Group()->setGroupConsumerUpdate('MQ_INST_1997661112067980_BXhPKk3X', 'GID_test_10', Constant::GROUP_READ_ENABLE);
+        dump($response);
+    }
+
+}
+
+class Message
+{
+    /**
+     * 生产
+     */
+    public function producerOrder()
+    {
+        $response = Queue::Message()->producerOrder('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01', 'http://queue.ljk.com/Message/test3', ['a' => 1]);
+        dump($response);
+    }
+
+    /**
+     * 发送消息到服务端
+     */
+    public function messageSend()
+    {
+        $response = Queue::Message()->messageSend('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01', [
+            'callback_url' => 'http://queue.ljk.com/Message/test3',
+            'message_body' => [
+                'a' => 1
+            ]
+        ], 'message_key_2021-04-02-17-13');
+        dump($response);
+    }
+
+    /**
+     * 向指定的消费者推送消息
+     */
+    public function messagePush()
+    {
+        $response = Queue::Message()->messagePush('MQ_INST_1997661112067980_BXhPKk3X', 'LJK_topic_test01', '****', '***', '***');
         dump($response);
     }
 

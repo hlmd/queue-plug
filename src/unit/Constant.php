@@ -13,6 +13,14 @@ class Constant
 
     const SIGN_SEPARATOR = '|';                                                      # 签名连接符
 
+    #Group适用的协议
+    const GROUP_TYPE_TCP      = 'tpc';                                               # Tcp
+    const GROUP_TYPE_HTTP     = 'http';                                              # Http
+
+    #Group消息读取权限
+    const GROUP_READ_ENABLE   = 1;                                                   # 开启
+    const GROUP_READ_DISABLE  = 0;                                                   # 关闭
+
     #消息类型
     const MSG_TYPE_COMMON     = 0;                                                   # 普通消息
     const MSG_TYPE_ZONE_ORDER = 1;                                                   # 分区顺序消息
