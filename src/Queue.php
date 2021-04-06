@@ -51,7 +51,7 @@ class Queue
         if (is_dir($path) && is_file($file_path)) {
             $config = require $file_path;
             if (!isset($config['base_url']) || !isset($config['key']) || !isset($config['secret'])) {
-                throw new Exception('Missing configuration!');
+                throw new Exception('CODE:84002 配置有误!');
             }
             return [
                 $config['base_url'],
@@ -59,7 +59,7 @@ class Queue
                 $config['secret'],
             ];
         } else {
-            throw new Exception('Missing configuration!');
+            throw new Exception('CODE:84001 缺少配置!');
         }
     }
 }
