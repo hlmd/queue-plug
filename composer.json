@@ -2,11 +2,11 @@
   "name": "hlmd/queue-plug",
   "description": "队列插件",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "黄连木笛",
-      "email": "email@example.com"
+      "email": "leihuahui@outlook.com"
     }
   ],
   "require": {
@@ -19,9 +19,6 @@
   "autoload": {
     "psr-4": {
       "queue\\": "src/"
-    },
-    "psr-0": {
-      "queue": "src"
     }
   }
 }
