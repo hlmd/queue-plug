@@ -15,6 +15,7 @@ namespace queue\service;
  * @method messageGetByMsgId(string $instance_id, string $topic, string $msg_id) 查询消息的信息
  * @method traceQueryByMsgKey(string $instance_id, string $topic, string $msg_key, int $begin_time, int $end_time) 创建轨迹查询任务
  * @method traceGetResult(string $query_id) 获取轨迹查询结果
+ * @method getMsg(string $message_id) 获取消息是否进入队列消费消息
  * @package queue\service
  */
 class Message extends Base
@@ -89,6 +90,14 @@ class Message extends Base
         'topic',
         'callback_url',
         'message_body'
+    ];
+
+    /**
+     * 获取消息是否进入队列消费消息
+     * @param string $message_id message_id
+     */
+    protected $getMsg = [
+        'message_id',
     ];
 
     /**
